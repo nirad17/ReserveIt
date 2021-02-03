@@ -7,8 +7,8 @@ class Loading extends StatelessWidget {
     return Container(
       color: Colors.indigo[100],
       child: Center(
-        child: SpinKitWave(
-          color: Colors.blue[600],
+        child: SpinKitCubeGrid(
+          color: Colors.indigo[400],
           size:50.0,
           ),
           ),

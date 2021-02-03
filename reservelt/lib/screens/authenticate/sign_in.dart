@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:reservelt/services/auth.dart';
 import 'package:reservelt/shared/loading.dart';
-
+import 'package:reservelt/shared/constants.dart';
 
 class SignIn extends StatefulWidget {
 
@@ -47,19 +47,7 @@ class _SignInState extends State<SignIn> {
               children: <Widget>[
                 SizedBox(height: 20.0),
                 TextFormField(
-                  decoration: InputDecoration(
-                    hintText: 'Email',
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.indigo[50],
-                        width:2.0)
-                      ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.blue[600], width:2.0)
-                      ),
-                    filled: true,
-                    fillColor: Colors.blue[100],
-                  ),
+                  decoration: textInputDecoration.copyWith(hintText: 'Email'),
                   validator: (val) => val.isEmpty ? 'Enter an email':null,
                   onChanged: (val) {
                     setState(() => email =val);
@@ -67,19 +55,7 @@ class _SignInState extends State<SignIn> {
                 ),
                 SizedBox(height: 20.0),
                 TextFormField(
-                  decoration: InputDecoration(
-                    hintText: 'Password',
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.indigo[50],
-                        width:2.0)
-                      ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.blue[600], width:2.0)
-                      ),
-                    filled: true,
-                    fillColor: Colors.blue[100],
-                  ),
+                 decoration: textInputDecoration.copyWith(hintText: 'Password'),
                   validator: (val) => val.length<6 ? 'Enter a password >6+ chars':null,
                   obscureText: true,
                   onChanged: (val) {

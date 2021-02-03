@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:reservelt/models/user.dart';
+import 'package:reservelt/services/database.dart';
 
 class AuthService{
 
@@ -46,6 +47,9 @@ class AuthService{
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       User user=result.user;
+
+      //create a new document for the user with uid
+      await Database(uid:user.uid).updateUserData('new_name','male','Mumbai','Worli',5,'10am');
       return _FromFirebaseUser(user);
     }catch(e){
       print(e.toString());

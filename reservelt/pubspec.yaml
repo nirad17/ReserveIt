@@ -65,7 +65,7 @@ assets:
   # list giving the asset and other descriptors for the font. For
   # example:
 fonts:
-  - family: IndieFlower
+  - fontfamily: IndieFlower
     fonts:
       - asset: fonts/IndieFlower-Regular.ttf
 
