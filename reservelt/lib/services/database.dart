@@ -20,4 +20,8 @@ class Database {
     });
 
   }
+  //
+  Stream<QuerySnapshot> get brews {
+    return reserveCollection.snapshots();
+  }
 }
