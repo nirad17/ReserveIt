@@ -4,6 +4,7 @@ import 'package:reservelt/shared/constants.dart';
 import 'package:reservelt/services/database.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:reservelt/screens/home/reserve_list.dart';
 
 class Home extends StatefulWidget {
 
@@ -15,7 +16,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
 
   final AuthService _auth=AuthService();
-  String name,sex;
+  String name,sex,city,locality;
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +25,9 @@ class _HomeState extends State<Home> {
       child: Scaffold(
       backgroundColor: Colors.indigo[100],
       appBar: AppBar(
+        centerTitle: true,
         title: Text('Reservelt'),
-        backgroundColor: Colors.indigo[400],
+        backgroundColor: Colors.indigo[500],
         elevation: 0.0,
         actions: <Widget>[
           FlatButton.icon(
@@ -37,8 +39,8 @@ class _HomeState extends State<Home> {
             },)
         ],
         ),
-        body: ReserveList()
-        body:Container(
+        //body: ReserveList()
+         body:Container(
           padding:EdgeInsets.symmetric(vertical: 20.0,horizontal:50.0),
           child: Form(
             //key:,
@@ -46,23 +48,38 @@ class _HomeState extends State<Home> {
               children: <Widget>[
                 SizedBox(height: 20.0),
                 TextFormField(
-                  decoration: textInputDecoration.copyWith(hintText: 'Enter Name'),
-                  validator: (val) => val.isEmpty ? 'name':null,
+                  decoration: textInputDecoration.copyWith(hintText: 'What should we call you?'),
+                  validator: (val) => val.isEmpty ? 'Enter name ':null,
                   onChanged: (val) {
                     setState(() => name=val);
+                    
                   },
                 ),
                 SizedBox(height: 20.0),
-
                 TextFormField(
-                  decoration: textInputDecoration.copyWith(hintText: 'Your locality'),
-                  validator: (val) => val.isEmpty ? 'locality':null,
+                  decoration: textInputDecoration.copyWith(hintText: 'Which City you live in?'),
+                  validator: (val) => val.isEmpty ? 'Please enter your City!':null,
+                  onChanged: (val) {
+                    setState(() => city=val);
+                   
+                  },
+                ),
+                SizedBox(height: 20.0),
+                TextFormField(
+                  decoration: textInputDecoration.copyWith(hintText: 'In which locality'),
+                  validator: (val) => val.isEmpty ? 'Kindly give locality!':null,
+                  onChanged: (val) {
+                    setState(() => locality=val);
+                  },
+                  
                 ),
               ],
               )
               )
         )
-        )
+       )
+       
     );
+    
   }
 }
