@@ -20,23 +20,37 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+
+    void _showSettingsPanel() {
+      showModalBottomSheet(context: context,builder: (context) {
+        return Container(
+          padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: 60.0),
+          child: Text("Settings"),
+        );
+      });
+    }
     return StreamProvider<QuerySnapshot>.value(
       value: Database().brews,
       child: Scaffold(
       backgroundColor: Colors.indigo[100],
       appBar: AppBar(
-        centerTitle: true,
+        centerTitle: false,
         title: Text('Reservelt'),
         backgroundColor: Colors.indigo[500],
-        elevation: 0.0,
+        elevation: 5.0,
         actions: <Widget>[
           FlatButton.icon(
             icon:Icon(Icons.person),
             label: Text('Log out'),
             onPressed: () async {
               await _auth.signOut();
-
-            },)
+            },
+            ),
+          FlatButton.icon(
+            icon:Icon(Icons.settings),
+            label: Text(''),
+            onPressed: () => _showSettingsPanel()
+            )
         ],
         ),
         //body: ReserveList()
@@ -48,6 +62,7 @@ class _HomeState extends State<Home> {
               children: <Widget>[
                 SizedBox(height: 20.0),
                 TextFormField(
+                  
                   decoration: textInputDecoration.copyWith(hintText: 'What should we call you?'),
                   validator: (val) => val.isEmpty ? 'Enter name ':null,
                   onChanged: (val) {
